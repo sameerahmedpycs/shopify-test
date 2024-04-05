@@ -102,6 +102,9 @@
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
       <option value="">Unselected</option>
+   <option value="">Unselected</option>
+
+  {% for value in option.values %}
     <option
       value="{{ value | escape }}"
       {% if option.selected_value == value %}
@@ -117,5 +120,6 @@
         {{- value -}}
       {%- endif %}
     </option>
+  {% endfor %}
   {%- endif -%}
 {%- endfor -%}
