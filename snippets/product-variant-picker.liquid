@@ -59,11 +59,11 @@
           %}
         </fieldset>
       {%- else -%}
-        <div class="product-form__input product-form__input--dropdown">
+        <div class="product-form__input product-form__input--dropdown"  {%- if option.name == 'unselected' or option.name == 'Unselected' -%}style="display:block;" {% else %} style="display:none;" {%- endif -%}>
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
-          <div class="select"  {%- if variant.title == 'unselected' or variant.title == 'Unselected' -%}style="display:block;" {% else %} style="display:none;" {%- endif -%}>
+          <div class="select" >
             {%- if picker_type == 'swatch_dropdown' -%}
               <span
                 data-selected-dropdown-swatch="options[{{ option.name | escape }}]"
