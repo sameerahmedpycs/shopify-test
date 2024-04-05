@@ -81,7 +81,7 @@
           {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
         </div>
       {%- else -%}
-        <div class="card__content" {% if product.title == 'Soft Winter Jacket' %} display:none;{% endif %}>
+        <div class="card__content" {% if product.title == 'Soft Winter Jacket' %}style="display:none;"{% endif %}>
           <div class="card__information">
             <h3 class="card__heading">
               <a
