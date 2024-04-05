@@ -1035,7 +1035,7 @@ class VariantSelects extends HTMLElement {
     window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
   }
 
-function filterMedia() {
+ filterMedia() {
  
   document.querySelectorAll('[thumbnail-color]').forEach(function(el) {
     el.style.display = 'none';
