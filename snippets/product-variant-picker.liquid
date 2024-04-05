@@ -72,7 +72,7 @@
                 {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
               </span>
             {%- endif -%}
-            <select {%- if option.name == 'unselected' or option.name == 'unselected' -%}style="display:block;" {% else %} style="display:none;" {%- endif -%}
+            <select 
               id="Option-{{ section.id }}-{{ forloop.index0 }}"
               class="select__select"
               name="options[{{ option.name | escape }}]"
