@@ -101,7 +101,9 @@
     <label class="form__label" for="Variants-{{ section.id }}">
       {{- 'products.product.product_variants' | t -}}
     </label>
-    <div class="select"  {%- if variant.title == 'unselected' or variant.title == 'Unselected' -%}style="display:block;" {% else %} style="display:none;" {%- endif -%}>
+    {% for variant in product.variants %}
+  {% if variant.title == 'unselected' or variant.title == 'Unselected' %}
+    <div class="select"  >
       <select
         name="id"
         id="Variants-{{ section.id }}"
@@ -146,5 +148,7 @@
       </select>
       {% render 'icon-caret' %}
     </div>
+      {% endif %}
+{% endfor %}
   </div>
 </noscript>
