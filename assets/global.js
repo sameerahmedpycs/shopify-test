@@ -1043,11 +1043,10 @@ filterMedia() {
     
     var selected_attribute = '[thumbnail-color="' + selected_variant + '"]';
     
-    if (selected_variant == selected_variant) {
-      
-      $(selected_attribute).show();
-
-    } }
+   var matchingElements = $(selected_attribute);
+if (matchingElements.length > 0) {
+matchingElements.show();
+} }
   
   updateShareUrl() {
     const shareButton = document.getElementById(`Share-${this.dataset.section}`);
