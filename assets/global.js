@@ -1035,6 +1035,20 @@ class VariantSelects extends HTMLElement {
     window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
   }
 
+filterMedia() {
+    
+         $('[thumbnail-color]').hide();
+    
+    var selected_variant = this.currentVariant.featured_media.alt;
+    
+    var selected_attribute = '[thumbnail-color="' + selected_variant + '"]';
+    
+    if (selected_variant == selected_variant) {
+      
+      $(selected_attribute).show();
+
+    } }
+  
   updateShareUrl() {
     const shareButton = document.getElementById(`Share-${this.dataset.section}`);
     if (!shareButton || !shareButton.updateUrl) return;
