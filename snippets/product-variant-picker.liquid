@@ -63,7 +63,7 @@
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
-          <div class="select">
+          <div class="select"  {%- if variant.title == 'unselected' or variant.title == 'Unselected' -%}style="display:block;" {% else %} style="display:none;" {%- endif -%}>
             {%- if picker_type == 'swatch_dropdown' -%}
               <span
                 data-selected-dropdown-swatch="options[{{ option.name | escape }}]"
@@ -101,9 +101,7 @@
     <label class="form__label" for="Variants-{{ section.id }}">
       {{- 'products.product.product_variants' | t -}}
     </label>
-    {% for variant in product.variants %}
-  {% if variant.title == 'unselected' or variant.title == 'Unselected' %}
-    <div class="select"  >
+    <div class="select">
       <select
         name="id"
         id="Variants-{{ section.id }}"
@@ -148,7 +146,5 @@
       </select>
       {% render 'icon-caret' %}
     </div>
-      {% endif %}
-{% endfor %}
   </div>
 </noscript>
