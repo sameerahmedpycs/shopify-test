@@ -83,7 +83,6 @@
       help_text: label_unavailable
     %}
   {%- elsif picker_type == 'button' -%}
-    
     <input
       type="radio"
       id="{{ input_id }}"
@@ -94,8 +93,8 @@
         checked
       {% endif %}
       {% if option_disabled %}
-        class="disabled"
-      {% endif %}
+        class="disabled "
+      {% endif %}{%- if option.name == 'Color' or option.name == 'color' -%}style="display:block;" {%- endif -%}
     >
     <label for="{{ input_id }}">
       {{ value -}}
