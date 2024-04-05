@@ -93,7 +93,7 @@
         checked
       {% endif %}
       {% if option_disabled %}
-        class="disabled "
+        class="disabled"
       {% endif %}
     >
     <label for="{{ input_id }}">
@@ -101,7 +101,7 @@
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
-    <option 
+    <option
       value="{{ value | escape }}"
       {% if option.selected_value == value %}
         selected="selected"
