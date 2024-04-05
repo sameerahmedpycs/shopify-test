@@ -101,6 +101,7 @@
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
+      <option value="">Unselected</option>
     <option
       value="{{ value | escape }}"
       {% if option.selected_value == value %}
