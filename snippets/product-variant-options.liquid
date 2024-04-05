@@ -83,7 +83,7 @@
       help_text: label_unavailable
     %}
   {%- elsif picker_type == 'button' -%}
-     {%- if option.name == 'Color' or option.name == 'color' -%}
+    
     <input
       type="radio"
       id="{{ input_id }}"
@@ -101,7 +101,6 @@
       {{ value -}}
       {{ label_unavailable }}
     </label>
-       {%- endif -%}
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
     <option
       value="{{ value | escape }}"
