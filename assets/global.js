@@ -1035,18 +1035,27 @@ class VariantSelects extends HTMLElement {
     window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
   }
 
-filterMedia() {
-    
-         $('[thumbnail-color]').hide();
-    
-    var selected_variant = this.currentVariant.featured_media.alt;
-    
-    var selected_attribute = '[thumbnail-color="' + selected_variant + '"]';
-    
-   var matchingElements = $(selected_attribute);
-if (matchingElements.length > 0) {
-matchingElements.show();
-} }
+function filterMedia() {
+ 
+  document.querySelectorAll('[thumbnail-color]').forEach(function(el) {
+    el.style.display = 'none';
+  });
+
+  var selected_variant = this.currentVariant.featured_media.alt;
+
+
+  var selected_attribute = '[thumbnail-color="' + selected_variant + '"]';
+
+
+  var matchingElements = document.querySelectorAll(selected_attribute);
+  if (matchingElements.length > 0) {
+
+    matchingElements.forEach(function(el) {
+      el.style.display = '';
+    });
+  }
+}
+
   
   updateShareUrl() {
     const shareButton = document.getElementById(`Share-${this.dataset.section}`);
