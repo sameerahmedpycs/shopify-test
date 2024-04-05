@@ -21,7 +21,6 @@
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
-      
       {%- liquid
         assign swatch_count = option.values | map: 'swatch' | compact | size
         assign picker_type = block.settings.picker_type
@@ -34,7 +33,6 @@
           endif
         endif
       -%}
-      
       {%- if picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
@@ -50,9 +48,7 @@
             picker_type: picker_type
           %}
         </fieldset>
-        
       {%- elsif picker_type == 'button' -%}
-         {%- if option.name == 'Color' or option.name == 'color' -%}
         <fieldset class="js product-form__input product-form__input--pill">
           <legend class="form__label">{{ option.name }}</legend>
           {% render 'product-variant-options',
@@ -62,7 +58,6 @@
             picker_type: picker_type
           %}
         </fieldset>
-           {%- endif -%}
       {%- else -%}
         <div class="product-form__input product-form__input--dropdown">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
