@@ -29,22 +29,20 @@
       role="list"
     >
       {%- for collection in collections -%}
-        {%- for product in card_collection.products -%}
-  {% unless product.title == 'Soft Winter Jacket' %}
+        
         <li
           class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
             style="--animation-order: {{ forloop.index }};"
-          {% endif %} 
+          {% endif %} {% if product.title == 'Soft Winter Jacket' %} style="display:none;" {% endif %}
          >
           {% render 'card-collection',
             card_collection: collection,
             media_aspect_ratio: section.settings.image_ratio,
             columns: 3
           %}
-        </li> {% endunless %}
-{%- endfor -%}
+        </li>
       {%- endfor -%}
     </ul>
     {% render 'pagination', paginate: paginate %}
