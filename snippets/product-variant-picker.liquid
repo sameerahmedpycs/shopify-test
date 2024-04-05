@@ -59,7 +59,7 @@
           %}
         </fieldset>
       {%- else -%}
-        <div class="product-form__input product-form__input--dropdown" {%- if option.name == 'unselected' or option.name == 'Unselected' -%}style="display:block;" {% else %} style="display:none;" {%- endif -%}>
+        <div class="product-form__input product-form__input--dropdown" {%- if option.name == 'size' or option.name == 'Size' -%}style="display:block;" {% else %} style="display:none;" {%- endif -%}>
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
