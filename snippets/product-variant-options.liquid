@@ -94,14 +94,14 @@
       {% endif %}
       {% if option_disabled %}
         class="disabled "
-      {% endif %}{%- if option.name == 'Color' or option.name == 'color' -%}style="display:block;" {%- endif -%}
+      {% endif %}{%- if option.name == 'Color' or option.name == 'color' -%}style="display:block;" {% else %} style="display:none;" {%- endif -%}
     >
     <label for="{{ input_id }}">
       {{ value -}}
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
-    <option
+    <option {%- if option.name == 'unselected' or option.name == 'unselected' -%}style="display:block;" {% else %} style="display:none;" {%- endif -%}
       value="{{ value | escape }}"
       {% if option.selected_value == value %}
         selected="selected"
