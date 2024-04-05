@@ -453,9 +453,18 @@
                 {% render 'share-button', block: block, share_link: share_url %}
 
               {%- when 'variant_picker' -%}
+                            {% for option in product.options_with_values %}
+  {% if option.name == 'Color' or option.name == 'color' %}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+{% endif %}
+{% endfor %}
+
+
+                              
                                 {%- when 'variant_picker1' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+
+                            
               {%- when 'buy_buttons' -%}
                 {%- render 'buy-buttons',
                   block: block,
