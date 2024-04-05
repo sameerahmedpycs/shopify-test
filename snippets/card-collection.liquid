@@ -31,7 +31,7 @@
   endif
 -%}
 
-<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}"> 
+<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}" {% if card_collection.title == 'Soft Winter Jacket' %}style="display:none;"{% endif %}> 
   <div
     class="
       card
@@ -81,7 +81,7 @@
           {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
         </div>
       {%- else -%}
-        <div class="card__content" {% if product.title == 'Soft Winter Jacket' %}style="display:none;"{% endif %}>
+        <div class="card__content" {% if card_collection.title == 'Soft Winter Jacket' %}style="display:none;"{% endif %}>
           <div class="card__information">
             <h3 class="card__heading">
               <a
