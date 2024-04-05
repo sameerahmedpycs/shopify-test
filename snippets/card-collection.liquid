@@ -113,7 +113,7 @@
       {%- endif -%}
     </div>
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
-      <div class="card__content" {% if product.title == 'Soft Winter Jacket' %}style="display:none;"{% endif %}>
+      <div class="card__content" {% if card_collection.title == 'Soft Winter Jacket' %}style="display:none;"{% endif %}>
         <div class="card__information">
           <h3 class="card__heading">
             <a
