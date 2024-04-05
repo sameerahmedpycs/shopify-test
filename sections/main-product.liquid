@@ -455,9 +455,18 @@
               {%- when 'variant_picker' -%}
                             
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
-                            
+
+
+
+                              
                                 {%- when 'variant_picker1' -%}
-                {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+            <select id="SizeVariant" name="size">
+  <option value="">Unselected</option>
+  <option value="Small">Small</option>
+  <option value="Medium">Medium</option>
+  <option value="Large">Large</option>
+</select>
+
 
                             
               {%- when 'buy_buttons' -%}
@@ -2358,3 +2367,14 @@
   ]
 }
 {% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+  var sizeVariantDropdown = document.getElementById('SizeVariant');
+  if (sizeVariantDropdown) {
+    sizeVariantDropdown.value = "";
+  }
+});
+
+</script>
