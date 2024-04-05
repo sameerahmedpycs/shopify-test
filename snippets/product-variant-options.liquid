@@ -101,15 +101,13 @@
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
-     <option
-      value="Unselected"
-      {% if option.selected_value == value %}
-        selected="selected"
-      {% endif %}
- 
-    >
-  Unselected
-    </option>
+     <!-- Always show Unselected as the first option -->
+  <option value="Unselected" {% unless option.selected_value %} selected="selected" {% endunless %}>
+    Unselected
+  </option>
+
+  <!-- Dynamically add other options -->
+  {% for value in option.values %}
     <option
       value="{{ value | escape }}"
       {% if option.selected_value == value %}
@@ -125,5 +123,6 @@
         {{- value -}}
       {%- endif %}
     </option>
+  {% endfor %}
   {%- endif -%}
 {%- endfor -%}
