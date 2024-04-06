@@ -3,7 +3,7 @@
         {% for option in product.options_with_values %}  
             {% assign optionName = option.name | downcase %}
              {% if optionName == 'color' %}
-                {% render 'variant-swatchs', option: option, product: product, product_form_id: product_form_id, picker_type: 'button' %}
+                {% render 'variant-swatch', option: option, product: product, product_form_id: product_form_id, picker_type: 'button' %}
             {% else %}
                 {% render 'variant-select',  option: option, product: product, product_form_id: product_form_id, picker_type: "dropdown" %}
              {% endif %}

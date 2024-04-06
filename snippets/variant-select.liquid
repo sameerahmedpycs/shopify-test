@@ -1,0 +1,28 @@
+{% comment %} select type product variant {% endcomment %}
+<div
+id="variant-selects-{{ section.id }}"
+class="no-js-hidden"
+data-section="{{ section.id }}"
+data-url="{{ product.url }}"
+{% if update_url == false %}
+  data-update-url="false"
+{% endif %}
+{{ block.shopify_attributes }}
+>
+  <div class="product-form__input product-form__input--dropdown">
+    <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+      {{ option.name }}
+    </label>
+    <div class="select">
+      <select
+        id="Option-{{ section.id }}-{{ forloop.index0 }}"
+        class="select__select"
+        name="options[{{ option.name | escape }}]"
+        form="{{ product_form_id }}"
+      >
+        {% render 'product-variant-options', product: product, option: option, picker_type: picker_type %}
+      </select>
+      {% render 'icon-caret' %}
+    </div>
+  </div>
+</div>
