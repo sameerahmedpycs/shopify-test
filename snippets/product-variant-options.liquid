@@ -33,7 +33,7 @@
       case option.position
         when 1
           if variants_option1_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
-            assign option_disabled = false
+            assign option_disabled = true
           endif
         when 2
           if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
@@ -109,6 +109,20 @@
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
-    
+    <option
+      value="{{ value | escape }}"
+      {% if option.selected_value == variants_option1_arr %}
+        selected="selected"
+      {% endif %}
+      {% if swatch_value and picker_type == 'swatch_dropdown' %}
+        data-option-swatch-value="{{ swatch_value }}"
+      {% endif %}
+    >
+      {% if option_disabled -%}
+        {{- 'products.product.value_unavailable' | t: option_value: value -}}
+      {%- else -%}
+        {{- value -}}
+      {%- endif %}
+    </option>
   {%- endif -%}
 {%- endfor -%}
