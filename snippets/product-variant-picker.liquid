@@ -71,13 +71,13 @@
               >
                 {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
               </span>
-            {%- endif -%}
+            {%- endif -%}ssfsdf
             <select 
               id="Option-{{ section.id }}-{{ forloop.index0 }}"
               class="select__select"
               name="options[{{ option.name | escape }}]"
               form="{{ product_form_id }}"
-            >dsfsd
+            >
               {% render 'product-variant-options',
                 product: product,
                 option: option,
