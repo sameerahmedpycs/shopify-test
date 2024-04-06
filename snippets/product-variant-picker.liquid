@@ -77,7 +77,7 @@
               class="select__select"
               name="options[{{ option.name | escape }}]"
               form="{{ product_form_id }}"
-            >
+            >dsfsd
               {% render 'product-variant-options',
                 product: product,
                 option: option,
@@ -101,7 +101,7 @@
     <label class="form__label" for="Variants-{{ section.id }}">
       {{- 'products.product.product_variants' | t -}}
     </label>
-    <div class="select">sdssdf
+    <div class="select">
       <select
         name="id"
         id="Variants-{{ section.id }}"
