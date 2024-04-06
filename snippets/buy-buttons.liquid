@@ -55,20 +55,9 @@
           type="hidden"
           name="id"
           value="{{ product.selected_or_first_available_variant.id }}"
-   {% assign disable_variant = false %}
-
-{%- for variant in product.variants -%}
-  {%- for option in variant.options -%}
-    {%- if variant.option1 == 'Size' and (variant.option1 == 'unselected' or variant.option1 == 'Unselected') -%}
-      {% assign disable_variant = true %}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endfor %}
-
-{% if disable_variant or product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-  disabled
-{% endif %}
-
+          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+            disabled
+          {% endif %}
           class="product-variant-id"
         >
         {%- if gift_card_recipient_feature_active -%}
