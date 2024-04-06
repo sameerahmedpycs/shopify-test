@@ -112,6 +112,8 @@
     >
       {% if option_disabled -%}
         {{- 'products.product.value_unavailable' | t: option_value: value -}}
+          {% elsif option.selected_value == variants_option1_arr -%}
+        {{- 'products.product.value_unavailable' | t: option_value: value -}}
       {%- else -%}
         {{- value -}}
       {%- endif %}
