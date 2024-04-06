@@ -82,17 +82,7 @@
             class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
          {% assign is_unselected_size = false %}
 
-{%- for option in product.options -%}
-  {% if option == 'Size' %}
-    {%- for variant in product.variants -%}
-      {% if variant.selected_or_first_available_variant and variant.option1 contains 'unselected' or variant.option1 contains 'Unselected' %}
-        {% assign is_unselected_size = true %}
-      {% endif %}
-    {%- endfor %}
-  {% endif %}
-{%- endfor %}
-
-{% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout or is_unselected_size %}
+{% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout or product.options_with_values == "Unselected" %}
   disabled
 {% endif %}
 
