@@ -80,9 +80,22 @@
             type="submit"
             name="add"
             class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout  or product.options.first%}
-              disabled
-            {% endif %}
+         {% assign is_unselected_size = false %}
+
+{%- for option in product.options -%}
+  {% if option == 'Size' %}
+    {%- for variant in product.variants -%}
+      {% if variant.selected_or_first_available_variant and variant.title contains 'unselected' or variant.title contains 'Unselected' %}
+        {% assign is_unselected_size = true %}
+      {% endif %}
+    {%- endfor %}
+  {% endif %}
+{%- endfor %}
+
+{% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout or is_unselected_size %}
+  disabled
+{% endif %}
+
           >
             <span>
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
