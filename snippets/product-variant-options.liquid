@@ -95,6 +95,10 @@
       {% if option_disabled %}
         class="disabled"
       {% endif %}
+           {% assign variantImage = product.variants | where:'option1', value |  first %}
+      {% if variantImage != blank and variantImage.featured_image != nil %}
+      data-mediaid="{{ variantImage.featured_media.id }}"
+      {% endif %}
     >
     <label for="{{ input_id }}">
       {% if variantImage != blank and variantImage.featured_image != nil %}
