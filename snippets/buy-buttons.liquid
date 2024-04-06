@@ -85,7 +85,7 @@
 {%- for option in product.options -%}
   {% if option == 'Size' %}
     {%- for variant in product.variants -%}
-      {% if variant.selected_or_first_available_variant and variant.title contains 'unselected' or variant.title contains 'Unselected' %}
+      {% if variant.selected_or_first_available_variant and variant.option1 contains 'unselected' or variant.option1 contains 'Unselected' %}
         {% assign is_unselected_size = true %}
       {% endif %}
     {%- endfor %}
