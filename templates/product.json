@@ -29,7 +29,6 @@
         },
         "variant_picker1_nMDUb9": {
           "type": "variant_picker1",
-          "disabled": true,
           "settings": {
             "picker_type": "dropdown",
             "swatch_shape": "circle"
