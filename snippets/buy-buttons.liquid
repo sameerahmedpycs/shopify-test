@@ -84,22 +84,7 @@
             {% endif %}
             
           >
-            {% if product.options.size > 0 %}
-  {% assign first_option = product.options.first %}
-  {% assign first_option_title = first_option.name %}
-  {% assign first_option_values = product.variants.map | map: first_option.position | uniq %}
-
-  <p>First Option Title: {{ first_option_title }}</p>
-  
-  {% if first_option_values.size > 0 %}
-    <p>First Value of "{{ first_option_title }}": {{ first_option_values.first }}</p>
-  {% else %}
-    <p>No values found for "{{ first_option_title }}"</p>
-  {% endif %}
-{% else %}
-  <p>This product has no options.</p>
-{% endif %}
-
+            
             <span>
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
@@ -163,3 +148,18 @@
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 </div>
+{% if product.options.size > 0 %}
+  {% assign first_option = product.options.first %}
+  {% assign first_option_title = first_option.name %}
+  {% assign first_option_values = product.variants.map | map: first_option.position | uniq %}
+
+  <p>First Option Title: {{ first_option_title }}</p>
+  
+  {% if first_option_values.size > 0 %}
+    <p>First Value of "{{ first_option_title }}": {{ first_option_values.first }}</p>
+  {% else %}
+    <p>No values found for "{{ first_option_title }}"</p>
+  {% endif %}
+{% else %}
+  <p>This product has no options.</p>
+{% endif %}
