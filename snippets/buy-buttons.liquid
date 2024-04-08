@@ -81,7 +81,7 @@
 
 {% for variant in product.variants %}
   {% if product.options[1] contains 'Size' %}
-    {% if variant.option2 != 'Unselected' %}
+    {% if variant.option2 == 'Unselected' %}
       {% assign disable_button = false %}
       {% break %}
     {% endif %}
