@@ -77,13 +77,26 @@
           -%}
 
 
+{% assign disable_button = true %}
+
+{% for variant in product.variants %}
+  {% if product.options[1] contains 'Size' %}
+    {% if variant.option2 == 'Unselected' %}
+      {% assign disable_button = false %}
+      {% break %}
+    {% endif %}
+  {% else %}
+    {% assign disable_button = false %}
+    {% break %}
+  {% endif %}
+{% endfor %}
 
 <button
   id="ProductSubmitButton-{{ section_id }}"
   type="submit"
   name="add"
   class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-  {% if  product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}disabled{% endif %}
+  {% if disable_button or product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}disabled{% endif %}
 >
 
             <span>
