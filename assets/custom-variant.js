@@ -67,7 +67,7 @@ class TestVariant extends HTMLElement {
       let selectedValues = []; 
        allData.forEach((val,key)=>{
         let value = val.toLocaleLowerCase();
-        if( value == 'unselected'){
+        if( value == 'Unselected'){
             Unselected = true;
            }
         if(key.includes('option')){
