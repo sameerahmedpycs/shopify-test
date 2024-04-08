@@ -83,10 +83,11 @@
               disabled
    
             {% endif %}
-             {% if product.options[1] contains 'Size' and variant.option2 == 'Unselected' %}
+             {% if product.options[1] contains 'Size' %}
+          {% if  variant.option2 == 'Unselected' %}
                disabled
             {% endif %}
-            
+              {% endif %}
           >
             
             <span>
