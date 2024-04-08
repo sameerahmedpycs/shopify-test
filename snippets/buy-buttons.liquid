@@ -155,7 +155,7 @@
         Title: {{ variant.title }} -
         Options: 
         {% if variant.title contains 'Size' %}
-          {% if variant.option1 == 'unselected' or variant.option1 == 'Unselected' %}
+          {% if variant.option1 == 'Unselected' %}
             {{ product.options[0][1].name }}: unavailable
           {% endif %}
           <!-- {% if variant.option2 == 'unselected' or variant.option2 == 'Unselected' %}
