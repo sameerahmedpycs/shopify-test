@@ -80,7 +80,7 @@
             name="add"
             class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
           
-          {% if product.variants.size > 0 %}
+  
 
     {% for variant in product.variants %}
         {% if product.options[1] contains 'Size' %}
@@ -92,7 +92,7 @@ disabled
       
     {% endfor %}
 
-{% endif %}
+
           >
             
             <span>
