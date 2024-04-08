@@ -75,16 +75,16 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-           {% assign disable_button = false %}
+
 
 {% assign disable_button = true %}
 
 {% for variant in product.variants %}
-  {% if product.options[1] contains 'Size' and variant.option2 == 'Unselected' %}
-   
+  {% if product.options[1] contains 'Size' %}
+    {% if variant.option2 == 'Unselected' %}
       {% assign disable_button = true %}
       {% break %}
- 
+    {% endif %}
   {% else %}
     {% assign disable_button = false %}
     {% break %}
