@@ -152,21 +152,32 @@
   <ul>
     {% for variant in product.variants %}
       <li>
-       
         Title: {{ variant.title }} - 
         Options: 
-        <!-- {% if variant.option1 %}
+        <!-- Checking for option1 with conditions -->
+        {% if variant.title == "Size" and (variant.option1 == "unselected" or variant.option1 == "Unselected") %}
+          {{ product.options[0].name }}: unavailable
+        {% elsif variant.option1 %}
           {{ product.options[0].name }}: {{ variant.option1 }}
-        {% endif %} -->
-        {% if variant.option2 %}
-{{ variant.option2 }}
         {% endif %}
-        <!-- {% if variant.option3 %}
-          , {{ product.options[2].name }}: {{ variant.option3 }}
-        {% endif %} -->
+        <!-- Checking for option2 with similar logic -->
+        {% if variant.title == "Size" and (variant.option2 == "unselected" or variant.option2 == "Unselected") %}
+          {{ product.options[1].name }}: unavailable
+        {% elsif variant.option2 %}
+          {{ product.options[1].name }}: {{ variant.option2 }}
+        {% endif %}
+        <!-- Reintroducing option3 check with updated logic -->
+        {% if variant.title == "Size" and (variant.option3 == "unselected" or variant.option3 == "Unselected") %}
+          {{ product.options[2].name }}: unavailable
+        {% elsif variant.option3 %}
+          {{ product.options[2].name }}: {{ variant.option3 }}
+        {% else %}
+          - it's good
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
 {% else %}
   <p>This product has no variants.</p>
 {% endif %}
+
