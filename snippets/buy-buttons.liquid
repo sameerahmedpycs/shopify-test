@@ -157,7 +157,7 @@
         {% assign variant_available = true %}
         
         {% if variant.option1 %}
-          {% if variant.title contains 'Size' and variant.option1 contains 'unselected' %}
+          {% if variant.title contains 'Size' and variant.option1 contains 'Unselected' %}
             {{ product.options[0].name }}: unavailable
             {% assign variant_available = false %}
           {% else %}
@@ -166,7 +166,7 @@
         {% endif %}
         
         {% if variant.option2 %}
-          {% if variant.title contains 'Size' and variant.option2 contains 'unselected' %}
+          {% if variant.title contains 'Size' and variant.option2 contains 'Unselected' %}
             {{ product.options[1].name }}: unavailable
             {% assign variant_available = false %}
           {% else %}
@@ -175,7 +175,7 @@
         {% endif %}
         
         {% if variant.option3 %}
-          {% if variant.title contains 'Size' and variant.option3 contains 'unselected' %}
+          {% if variant.title contains 'Size' and variant.option3 contains 'Unselected' %}
             {{ product.options[2].name }}: unavailable
             {% assign variant_available = false %}
           {% else %}
