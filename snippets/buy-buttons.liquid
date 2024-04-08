@@ -74,26 +74,23 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-          <button
-            id="ProductSubmitButton-{{ section_id }}"
-            type="submit"
-            name="add"
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-          
-  
+     {% assign disable_button = false %}
 
-    {% for variant in product.variants %}
-        {% if product.options[1] contains 'Size' %}
-          {% if  variant.option2 == 'Unselected' %}
-disabled
-          {% endif %}
-        
-        {% endif %}
-      
-    {% endfor %}
+{% for variant in product.variants %}
+  {% if product.options[1] contains 'Size' %}
+    {% if variant.option2 == 'Unselected' %}
+      {% assign disable_button = true %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
 
-
-          >
+<button
+  id="ProductSubmitButton-{{ section_id }}"
+  type="submit"
+  name="add"
+  class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+  {% if disable_button %}disabled{% endif %}
+>
             
             <span>
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
