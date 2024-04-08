@@ -155,7 +155,7 @@
         <!-- Title: {{ variant.title }} - -->
          {{ product.options[1]  }}
         Options: 
-        {% if variant contains 'Size' %}
+        {% if product.options[1] contains 'Size' %}
           {% if  variant.option2 == 'Unselected' %}
             {{ product.options[0][1].name }}: unavailable
           {% endif %}
