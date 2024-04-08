@@ -55,11 +55,12 @@
           type="hidden"
           name="id"
           value="{{ product.selected_or_first_available_variant.id }}"
-          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout  %}
+          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
             disabled
           {% endif %}
           class="product-variant-id"
         >
+
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
@@ -74,7 +75,7 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-     {% assign disable_button = false %}
+           {% assign disable_button = false %}
 
 {% for variant in product.variants %}
   {% if product.options[1] contains 'Size' %}
@@ -89,9 +90,8 @@
   type="submit"
   name="add"
   class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-  {% if disable_button %}disabled{% endif %}
+  {% if disable_button %}disabled="disabled"{% endif %}
 >
-            
             <span>
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
@@ -155,27 +155,3 @@
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 </div>
-{% if product.variants.size > 0 %}
-  <ul>
-    {% for variant in product.variants %}
-      <li>
-        <!-- Title: {{ variant.title }} - -->
-         {{ product.options[1]  }}
-        Options: 
-        {% if product.options[1] contains 'Size' %}
-          {% if  variant.option2 == 'Unselected' %}
-            {{ product.options[0][1].name }}: unavailable
-          {% endif %}
-          <!-- {% if variant.option2 == 'unselected' or variant.option2 == 'Unselected' %}
-            {{ product.options[1].name }}: unavailable
-          {% endif %} -->
-          <!-- {% if variant.option3 == 'unselected' or variant.option3 == 'Unselected' %}
-            {{ product.options[2].name }}: unavailable
-          {% endif %} -->
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>This product has no variants.</p>
-{% endif %}
