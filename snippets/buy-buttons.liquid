@@ -153,7 +153,7 @@
     {% for variant in product.variants %}
       <li>
         <!-- Title: {{ variant.title }} - -->
-         {{ product_variant }}
+         {{ product.options[1].name  }}
         Options: 
         {% if variant contains 'Size' %}
           {% if  variant.option2 == 'Unselected' %}
