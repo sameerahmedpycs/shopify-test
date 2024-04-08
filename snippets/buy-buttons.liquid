@@ -158,12 +158,12 @@
           {% if variant.option1 == 'unselected' or variant.option1 == 'Unselected' %}
             {{ product.options[0].name }}: unavailable
           {% endif %}
-          {% if variant.option2 == 'unselected' or variant.option2 == 'Unselected' %}
+          <!-- {% if variant.option2 == 'unselected' or variant.option2 == 'Unselected' %}
             {{ product.options[1].name }}: unavailable
-          {% endif %}
-          {% if variant.option3 == 'unselected' or variant.option3 == 'Unselected' %}
+          {% endif %} -->
+          <!-- {% if variant.option3 == 'unselected' or variant.option3 == 'Unselected' %}
             {{ product.options[2].name }}: unavailable
-          {% endif %}
+          {% endif %} -->
         {% endif %}
       </li>
     {% endfor %}
