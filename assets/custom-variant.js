@@ -20,7 +20,8 @@ class TestVariant extends HTMLElement {
 
       updatePrice(data){
         document.querySelector(".price__container [data-compareprice]").innerHTML = data.currentVariant.compare_at_price == null ? '' : Shopify.formatMoney(data.currentVariant.compare_at_price);
-        document.querySelector(".price__container [data-price]").innerHTML = Shopify.formatMoney(data.currentVariant.price);
+        document.querySelector(".price__container [data-price]").innerHTML = Shopify.formatMoney(data.currentVariant.price, "${{amount}} CAD");
+
     }
 
       updateMedia(){
@@ -31,7 +32,7 @@ class TestVariant extends HTMLElement {
                     let imageButton = document.querySelector(`[data-media-id="${mediaId}"]`);
                     // console.log(imageButton);
                     let mediaGalleryId = imageButton.closest('[data-media-id]').dataset.thumnailId;
-                    // console.log("mediaGalleryId",mediaGalleryId);
+                    console.log("mediaGalleryId",mediaGalleryId);
                     document.querySelector('media-gallery').setActiveMedia(mediaGalleryId, false);
                  }
             }
@@ -67,7 +68,7 @@ class TestVariant extends HTMLElement {
       let selectedValues = []; 
        allData.forEach((val,key)=>{
         let value = val.toLocaleLowerCase();
-        if( value == 'Unselected'){
+        if( value == 'unselected'){
             Unselected = true;
            }
         if(key.includes('option')){
