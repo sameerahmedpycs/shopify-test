@@ -60,6 +60,7 @@ class CartItems extends HTMLElement {
               targetElement.replaceWith(sourceElement);
             }
           }
+          this.afterCartUpdate();
         })
         .catch((e) => {
           console.error(e);
@@ -71,13 +72,44 @@ class CartItems extends HTMLElement {
           const html = new DOMParser().parseFromString(responseText, 'text/html');
           const sourceQty = html.querySelector('cart-items');
           this.innerHTML = sourceQty.innerHTML;
+          this.afterCartUpdate();
         })
         .catch((e) => {
           console.error(e);
         });
     }
   }
-
+  // This will act like a call back for our cart api request, after the cart actually updates
+  afterCartUpdate(){
+    fetch('/cart.json').then(data => data.json()).then(cart => {
+      let conditioned_product_exists = cart.items.find(i => i.product_id == bundleData.conditionedProduct_id && i.variant_title == bundleData.conditionedVariant);
+      let freeProductAvailable = cart.items.find(i => i.variant_id == bundleData.freeProduct_variant_id);
+      if(conditioned_product_exists != undefined && freeProductAvailable != undefined) return;
+      if(conditioned_product_exists != undefined && freeProductAvailable == undefined){
+        // console.log('adding product into cart');
+          let data = {
+            method:'POST',
+            headers: {
+              'content-type':'application/json',
+              'accept':'application/json'
+            },
+            body:JSON.stringify({quantity:1,id:bundleData.freeProduct_variant_id})
+          }
+            fetch('/cart/add.js',data).then(d => d.json()).then(data => this.onCartUpdate());
+        }else if(conditioned_product_exists == undefined && freeProductAvailable != undefined){
+          // console.log('removing item from cart');
+          let data = {
+            method:'POST',
+            headers: {
+              'content-type':'application/json',
+              'accept':'application/json'
+            },
+            body:JSON.stringify({quantity:0,id:bundleData.freeProduct_variant_id})
+          }
+          fetch('/cart/change.js',data).then(d => d.json()).then(data => this.onCartUpdate());
+        }
+     });
+  }
   getSectionsToRender() {
     return [
       {
@@ -105,7 +137,6 @@ class CartItems extends HTMLElement {
 
   updateQuantity(line, quantity, name, variantId) {
     this.enableLoading(line);
-
     const body = JSON.stringify({
       line,
       quantity,
@@ -166,6 +197,7 @@ class CartItems extends HTMLElement {
         } else if (document.querySelector('.cart-item') && cartDrawerWrapper) {
           trapFocus(cartDrawerWrapper, document.querySelector('.cart-item__name'));
         }
+        this.afterCartUpdate();
 
         publish(PUB_SUB_EVENTS.cartUpdate, { source: 'cart-items', cartData: parsedState, variantId: variantId });
       })
@@ -222,6 +254,7 @@ class CartItems extends HTMLElement {
     cartItemElements.forEach((overlay) => overlay.classList.add('hidden'));
     cartDrawerItemElements.forEach((overlay) => overlay.classList.add('hidden'));
   }
+
 }
 
 customElements.define('cart-items', CartItems);
@@ -234,7 +267,7 @@ if (!customElements.get('cart-note')) {
         super();
 
         this.addEventListener(
-          'input',
+          'change',
           debounce((event) => {
             const body = JSON.stringify({ note: event.target.value });
             fetch(`${routes.cart_update_url}`, { ...fetchConfig(), ...{ body } });
