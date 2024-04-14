@@ -31,6 +31,13 @@
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+     <script>
+      bundleData = {
+        freeProduct_variant_id : "{{settings.free_product.selected_or_first_available_variant.id | default:'undefined'}}",
+        conditionedProduct_id : "{{settings.conditioned_product.id | default:'undefined'}}",
+        conditionedVariant : "{{settings.specific_variant | default:'undefined'}}"
+      }
+    </script>
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
