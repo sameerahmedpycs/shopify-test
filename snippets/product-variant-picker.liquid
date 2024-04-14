@@ -10,7 +10,7 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
-  <test-variant
+  <variant-selects
     id="variant-selects-{{ section.id }}"
     class="no-js-hidden"
     data-section="{{ section.id }}"
@@ -94,7 +94,7 @@
       {{ product.variants | json }}
     </script>
     
-  </test-variant>
+  </variant-selects>
 {%- endunless -%}
 
 <noscript class="product-form__noscript-wrapper-{{ section.id }}">
