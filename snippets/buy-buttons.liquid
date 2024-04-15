@@ -64,8 +64,8 @@
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
-  {% if product.options[1].name contains 'Size' and variant.option2 == 'Unselected' %}
-        <div class="product-form__buttons" >
+
+        <div class="product-form__buttons">
           {%- liquid
             assign check_against_inventory = true
             if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
@@ -75,44 +75,6 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-
-
-
-
-<button
-  id="ProductSubmitButton-{{ section_id }}"
-  type="submit"
-  name="add"
-  class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
- disabled
-  
->
-
-            <span>
-              {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                {{ 'products.product.sold_out' | t }}
-              {%- else -%}
-                {{ 'products.product.add_to_cart' | t }}
-              {%- endif -%}
-            </span>
-            {%- render 'loading-spinner' -%}
-          </button>
-          {%- if show_dynamic_checkout -%}
-            {{ form | payment_button }}
-          {%- endif -%}
-        </div>
-{% else %}
-  <div class="product-form__buttons" >
-          {%- liquid
-            assign check_against_inventory = true
-            if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
-              assign check_against_inventory = false
-            endif
-            if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
-              assign quantity_rule_soldout = true
-            endif
-          -%}
-
 
 
 
@@ -123,7 +85,6 @@
   name="add"
   class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
   {% if  product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}disabled{% endif %}
-  
 >
 
             <span>
@@ -139,7 +100,6 @@
             {{ form | payment_button }}
           {%- endif -%}
         </div>
-        {% endif %}
       {%- endform -%}
     </product-form>
   {%- else -%}
@@ -190,13 +150,3 @@
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 </div>
-<script>
-function checkSizeOption(selectElement) {
-    var selectedValue = selectElement.value;
-    if (selectedValue === 'Unselected') {
-        console.log('too Working');  // You can also display a message on the page if required
-    } else {
-        console.log('Not working');
-    }
-}
-</script>
