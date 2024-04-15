@@ -110,7 +110,7 @@
   {%- elsif option.name == 'Size' or option.name == 'Size' -%}
     <option
       value="{{ value | escape }}"
-      {% if option.selected_value == variants_option1_arr %}
+      {% if option.selected_value == value %}
         selected="selected"
       {% endif %}
       {% if swatch_value and picker_type == 'swatch_dropdown' %}
