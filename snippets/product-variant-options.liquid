@@ -82,7 +82,7 @@
       shape: block.settings.swatch_shape,
       help_text: label_unavailable
     %}
-  {%- elsif picker_type == 'button' -%}
+  {%- elsif picker_type == 'Color' -%}
     <input
       type="radio"
       id="{{ input_id }}"
@@ -108,7 +108,7 @@
       {% endif  %}
       {{ label_unavailable }}
     </label>
-  {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
+  {%- elsif picker_type == 'Size' or picker_type == 'size' -%}
     <option
       value="{{ value | escape }}"
       {% if option.selected_value == variants_option1_arr %}
