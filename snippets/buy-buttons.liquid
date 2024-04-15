@@ -155,3 +155,13 @@
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 </div>
+<script>
+function checkSizeOption(selectElement) {
+    var selectedValue = selectElement.value;
+    if (selectedValue === 'Unselected') {
+        console.log('Working');  // You can also display a message on the page if required
+    } else {
+        console.log('Not working');
+    }
+}
+</script>
