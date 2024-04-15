@@ -172,21 +172,34 @@ if (!customElements.get('product-form')) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-
-  document.querySelector(".select__select").selectedIndex = 0;
-
- 
-  var radios = document.querySelectorAll('input[type="radio"]');
-  radios.forEach(radio => {
-    radio.checked = false;
-  });
-
- 
-  var ulElement = document.querySelector('.ul_parent');
-  if (ulElement) {
-    var thumbnail = ulElement.querySelector('li:nth-child(2)');
-    if (thumbnail) {
-      thumbnail.style.display = 'none';
-    }
-  }
+    resetSelectDropdown();
+    clearRadioSelections();
+    hideSecondThumbnail();
 });
+
+
+function resetSelectDropdown() {
+    const selectDropdown = document.querySelector(".select__select");
+    if (selectDropdown) {
+        selectDropdown.selectedIndex = 0;
+    }
+}
+
+
+function clearRadioSelections() {
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach(radio => {
+        radio.checked = false;
+    });
+}
+
+
+function hideSecondThumbnail() {
+    const ulElement = document.querySelector('.ul_parent');
+    if (ulElement) {
+        const thumbnail = ulElement.querySelector('li:nth-child(2)');
+        if (thumbnail) {
+            thumbnail.style.display = 'none';
+        }
+    }
+}
