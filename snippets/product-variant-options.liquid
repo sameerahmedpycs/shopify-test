@@ -96,7 +96,7 @@
       name="{{ option.name }}"
       value="{{ value | escape }}"
       form="{{ product_form_id }}"
-      {% if option.selected_value == value %}
+      {% if option.selected_value == variants_option1_arr %}
         checked
       {% endif %}
       {% if option_disabled %}
