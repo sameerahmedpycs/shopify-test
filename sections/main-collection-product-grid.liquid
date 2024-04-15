@@ -151,8 +151,8 @@
                   class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
-                    style="--animation-order: {{ forloop.index }}; {% if product.title == 'Soft Winter Jacket' %}display:none;{% endif %}"  
-                  {% endif %} 
+                    style="--animation-order: {{ forloop.index }};"
+                  {% endif %}
                 >
                   {% render 'card-product',
                     card_product: product,
@@ -210,7 +210,7 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
-      "default": "scheme-1"
+      "default": "background-1"
     },
     {
       "type": "header",

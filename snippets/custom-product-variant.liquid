@@ -1,0 +1,27 @@
+{% comment %}
+  Renders product variant-picker
+
+  Accepts:
+  - product: {Object} product object.
+  - block: {Object} passing the block information.
+  - product_form_id: {String} Id of the product form to which the variant picker is associated.
+  - update_url: {Boolean} whether or not to update url when changing variants. If false, the url isn't updated. Default: true (optional).
+  Usage:
+  {% render 'custom-product-variant', product: product, block: block, product_form_id: product_form_id %}
+{% endcomment %}
+{% comment %} Creating Custom Variant options {% endcomment %}
+<test-variant>
+{% unless product.has_only_default_variant %} 
+        {% for option in product.options_with_values %}  
+            {% assign optionName = option.name | downcase %}
+             {% if optionName == 'color' %}
+                {% render 'variant-swatchs', option: option, product: product, product_form_id: product_form_id, picker_type: 'button' %}
+            {% else %}
+                {% render 'variant-select',  option: option, product: product, product_form_id: product_form_id, picker_type: "dropdown" %}
+             {% endif %}
+        {% endfor %}
+        <script type="application/json" data-variants-json>
+        {{ product.variants | json }}
+        </script>
+    {% endunless %} 
+</test-variant>
