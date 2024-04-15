@@ -77,11 +77,7 @@
           -%}
 
 
-{% if product.options[1].name contains 'Size' and variant.option2 == 'Unselected' %}
-    Working
-{% else %}
-    Not working
-{% endif %}
+
 
 
 <button
@@ -90,6 +86,10 @@
   name="add"
   class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
   {% if  product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}disabled{% endif %}
+  {% if product.options[1].name contains 'Size' and variant.option2 == 'Unselected' %}
+    disabled
+
+{% endif %}
 >
 
             <span>
