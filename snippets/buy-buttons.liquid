@@ -77,14 +77,12 @@
           -%}
 
 
-          {% if product.options[1] contains 'Size' %}
-    {% if variant.option2 == 'Unselected' %}
+{% if product.options[1].name contains 'Size' and variant.option2 == 'Unselected' %}
+    Working
+{% else %}
+    Not working
+{% endif %}
 
-
-
-      
-              {%- endif -%}
-              {%- endif -%}
 
 <button
   id="ProductSubmitButton-{{ section_id }}"
