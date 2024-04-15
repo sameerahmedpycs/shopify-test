@@ -55,9 +55,9 @@
           type="hidden"
           name="id"
           value="{{ product.selected_or_first_available_variant.id }}"
-
+          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
             disabled
-  
+          {% endif %}
           class="product-variant-id"
         >
 
@@ -77,14 +77,24 @@
           -%}
 
 
+          {% if product.options[1] contains 'Size' %}
+    {% if variant.option2 == 'Unselected' %}
 
+
+
+      
+              {%- endif -%}
+              {%- endif -%}
 
 <button
   id="ProductSubmitButton-{{ section_id }}"
   type="submit"
   name="add"
   class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-  disabled
+  {% if product.options[1].name contains 'Size' and variant.option2 == 'Unselected' %}
+    disabled
+
+{% endif %}
 >
 
             <span>
