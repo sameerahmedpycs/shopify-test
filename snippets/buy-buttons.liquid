@@ -151,22 +151,27 @@
   {%- endif -%}
 </div>
 <script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Access the dropdown by its class name. Assuming 'size-selection' is unique, or you are selecting the first element if multiple exist.
+    // Select the dropdown by its class; ensure this class name is correct and unique to the dropdown
     const sizeSelect = document.querySelector('.size-selection');
-    // Access the submit button by its dynamically generated ID, using Liquid to inject the section_id
+
+    // Select the submit button using the dynamically generated ID from Liquid
     const submitButton = document.getElementById('ProductSubmitButton-{{ section_id }}');
 
-    // Function to update the button state based on the dropdown value
+    // Function to update the button's enabled/disabled state based on the dropdown value
     function updateButtonState() {
-        // Disable the button if the selected option is 'Unselected'
-        submitButton.disabled = sizeSelect.value === 'Unselected';
+        if (sizeSelect.value === 'Unselected') {
+            submitButton.disabled = true;
+        } else {
+            submitButton.disabled = false;
+        }
     }
 
-    // Attach an event listener to the dropdown to handle changes
+    // Add an event listener to the dropdown for handling changes
     sizeSelect.addEventListener('change', updateButtonState);
 
-    // Perform an initial check to set the correct state of the button when the page loads
+    // Set the correct initial state of the button
     updateButtonState();
 });
 </script>
