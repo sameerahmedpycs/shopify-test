@@ -77,24 +77,14 @@
           -%}
 
 
-          {% if product.options[1] contains 'Size' %}
-    {% if variant.option2 == 'Unselected' %}
-
-
-
-      
-              {%- endif -%}
-              {%- endif -%}
+   
 
 <button
   id="ProductSubmitButton-{{ section_id }}"
   type="submit"
   name="add"
   class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-  {% if product.selected_or_first_available_variant.options[1].name contains 'Size' or variant.option2 == 'Unselected' %}
-    disabled
 
-{% endif %}
 >
 
             <span>
@@ -160,3 +150,23 @@
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Access the dropdown by its class name. Assuming 'size-selection' is unique, or you are selecting the first element if multiple exist.
+    const sizeSelect = document.querySelector('.size-selection');
+    // Access the submit button by its dynamically generated ID, using Liquid to inject the section_id
+    const submitButton = document.getElementById('ProductSubmitButton-{{ section_id }}');
+
+    // Function to update the button state based on the dropdown value
+    function updateButtonState() {
+        // Disable the button if the selected option is 'Unselected'
+        submitButton.disabled = sizeSelect.value === 'Unselected';
+    }
+
+    // Attach an event listener to the dropdown to handle changes
+    sizeSelect.addEventListener('change', updateButtonState);
+
+    // Perform an initial check to set the correct state of the button when the page loads
+    updateButtonState();
+});
+</script>
