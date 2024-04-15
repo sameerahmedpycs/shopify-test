@@ -89,26 +89,22 @@
       shape: block.settings.swatch_shape,
       help_text: label_unavailable
     %}
- {%- elsif picker_type == 'Color' -%}
+  {%- elsif option.name == 'Color' -%}
     <input
       type="radio"
       id="{{ input_id }}"
       name="{{ option.name }}"
       value="{{ value | escape }}"
       form="{{ product_form_id }}"
-      {% if option.selected_value == value %}
+      {% if option.selected_value == variants_option1_arr %}
         checked
       {% endif %}
       {% if option_disabled %}
         class="disabled"
       {% endif %}
-           {% assign variantImage = product.variants | where:'option1', value |  first %}
-      {% if variantImage != blank and variantImage.featured_image != nil %}
-      data-mediaid="{{ variantImage.featured_media.id }}"
-      {% endif %}
     >
     <label for="{{ input_id }}">
-      {% if variantImage != blank and variantImage.featured_image != nil %}
+     {% if variantImage != blank and variantImage.featured_image != nil %}
       <img src="{{variantImage.featured_media.src | img_url }}" width="30" loading="eager" height="30" style="max-width:25px" >
       {% else %}
       {{ value -}}
