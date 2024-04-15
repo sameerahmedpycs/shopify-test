@@ -4,8 +4,8 @@
     "theme_name": "Dawn",
     "theme_version": "13.0.1",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/online-store\/themes",
+    "theme_support_url": "https:\/\/support.shopify.com\/"
   },
   {
     "name": "t:settings_schema.logo.name",
@@ -1463,6 +1463,31 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      }
+    ]
+  },
+  {
+    "name": "Bundle Functionality",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Settings for Bundle"
+      },
+      {
+        "type": "product",
+        "label": "Conditioned Products",
+        "id": "conditioned_product"
+      },
+      {
+        "type": "textarea",
+        "label": "Specific Variant",
+        "id": "specific_variant",
+        "info": "Copy the Variant title from admin E.g., Black \/ Medium"
+      },
+      {
+        "type": "product",
+        "label": "Free Product",
+        "id": "free_product"
       }
     ]
   }
