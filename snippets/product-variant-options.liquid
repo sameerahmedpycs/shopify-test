@@ -54,13 +54,6 @@
     else
       assign swatch_value = nil
     endif
-
-    assign selected_variant = product.selected_variant
-    for variant in product.variants
-      if variant.title contains value and variant.image
-        assign selected_variant = variant
-      endif
-    endfor
   -%}
 
   {%- capture input_id -%}
@@ -89,28 +82,36 @@
       shape: block.settings.swatch_shape,
       help_text: label_unavailable
     %}
-  {%- elsif option.name == 'Color' -%}
+  {%- elsif picker_type == 'button' -%}
     <input
       type="radio"
       id="{{ input_id }}"
       name="{{ option.name }}"
       value="{{ value | escape }}"
       form="{{ product_form_id }}"
-      {% if option.selected_value == variants_option1_arr %}
+      {% if option.selected_value == value %}
         checked
       {% endif %}
       {% if option_disabled %}
         class="disabled"
       {% endif %}
+           {% assign variantImage = product.variants | where:'option1', value |  first %}
+      {% if variantImage != blank and variantImage.featured_image != nil %}
+      data-mediaid="{{ variantImage.featured_media.id }}"
+      {% endif %}
     >
     <label for="{{ input_id }}">
-      <img src="{{ selected_variant.image.src | img_url: 'x65' }}" alt="{{ selected_variant.title }}" />
+      {% if variantImage != blank and variantImage.featured_image != nil %}
+      <img src="{{variantImage.featured_media.src | img_url }}" width="30" loading="eager" height="30" style="max-width:25px" >
+      {% else %}
+      {{ value -}}
+      {% endif  %}
       {{ label_unavailable }}
     </label>
-  {%- elsif option.name == 'Size' or option.name == 'Size' -%}
+  {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
     <option
       value="{{ value | escape }}"
-      {% if option.selected_value == value %}
+      {% if option.selected_value == variants_option1_arr %}
         selected="selected"
       {% endif %}
       {% if swatch_value and picker_type == 'swatch_dropdown' %}
