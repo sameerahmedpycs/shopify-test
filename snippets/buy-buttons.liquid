@@ -75,18 +75,15 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-
-
-   
-
-<button
-  id="ProductSubmitButton-{{ section_id }}"
-  type="submit"
-  name="add"
-  class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-
->
-
+          <button
+            id="ProductSubmitButton-{{ section_id }}"
+            type="submit"
+            name="add"
+            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+              disabled
+            {% endif %}
+          >
             <span>
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
@@ -150,27 +147,3 @@
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Select the dropdown by its class; ensure this class name is correct and unique to the dropdown
-    const sizeSelect = document.querySelector('.size-selection');
-
-    // Select the submit button using the dynamically generated ID from Liquid
-    const submitButton = document.getElementById('ProductSubmitButton-{{ section_id }}');
-
-    // Function to update the button's enabled/disabled state based on the dropdown value
-    function updateButtonState() {
-        if (sizeSelect.value === 'Unselected') {
-            submitButton.disabled = true;
-        } else {
-            submitButton.disabled = false;
-        }
-    }
-
-    // Add an event listener to the dropdown for handling changes
-    sizeSelect.addEventListener('change', updateButtonState);
-
-    // Set the correct initial state of the button
-    updateButtonState();
-});
-</script>
