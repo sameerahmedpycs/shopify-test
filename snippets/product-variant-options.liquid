@@ -104,7 +104,7 @@
       {% endif %}
     >
     <label for="{{ input_id }}">
-      <img src="{{ selected_variant.image.src | img_url: 'x65' }}" alt="{{ selected_variant.title }}" />
+      <img src="{{ selected_variant.image.src | img_url }}" width="30" loading="eager" height="30" style="max-width:25px" />
       {{ label_unavailable }}
     </label>
   {%- elsif option.name == 'Size' or option.name == 'Size' -%}
